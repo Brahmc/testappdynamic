@@ -50,3 +50,16 @@ body {
 .menuProduct div {
   flex: 1;
 }
+
+.productSize {
+  font-size: 0.6em;
+}
+
+.note {
+  color: #a21212;
+  font-size: smaller;
+}
+
+.productLine {
+  padding: .2em 0;
+}
