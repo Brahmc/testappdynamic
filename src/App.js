@@ -1,4 +1,5 @@
 import './App.css';
+import {MenuProduct} from "./components/MenuProduct";
 
 function App() {
   return (
@@ -12,10 +13,4 @@ function App() {
 
   );
 }
-
-function MenuProduct(props) {
-    const {productName} = props;
-    return <div>{productName}</div>
-}
-
 export default App;
