@@ -5,10 +5,10 @@ function App() {
   return (
       <div>
           <h1>Menu</h1>
-          <MenuProduct productName="cola" />
-          <MenuProduct productName="water" />
-          <MenuProduct productName="bier" />
-          <MenuProduct productName="wijn" />
+          <MenuProduct productName="cola" price={1} />
+          <MenuProduct productName="water" price={1} />
+          <MenuProduct productName="bier" price={1} />
+          <MenuProduct productName="wijn" price={2} />
       </div>
 
   );

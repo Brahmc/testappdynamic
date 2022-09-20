@@ -1,4 +1,4 @@
 export function MenuProduct(props) {
-    const {productName} = props;
-    return <div>{productName}</div>
+    const {productName, price} = props;
+    return <div className={'menuProduct'}><div>{productName}</div><div>{price}</div></div>
 }
