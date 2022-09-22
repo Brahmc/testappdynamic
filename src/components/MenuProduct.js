@@ -1,7 +1,10 @@
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 function ProductSize(props) {
     const {product} = props;
     if(!product.size) return;
-    return <span className="productSize" style={{color: "blue", textDecoration: "underline"}}> - {product.size}</span>;
+    return <span style={{color: "blue", textDecoration: "underline", fontSize: '.7em'}}> - {product.size}</span>;
 }
 
 function ProductNote(props) {
@@ -14,15 +17,15 @@ export function MenuProduct(props) {
     const {product} = props;
     if(!product?.name) return;
     return (
-        <div className='productLine'>
-            <div className='menuProduct'>
-                <div>
+        <Row className='mb-2'>
+            <Row>
+                <Col>
                     {product.name}
                     <ProductSize product={product}/>
-                </div>
-                <div>{product.price}</div>
-            </div>
+                </Col>
+                <Col >{product.price}€</Col>
+            </Row>
             <ProductNote product={product} />
-        </div>
+        </Row>
     );
 }
