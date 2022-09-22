@@ -2,6 +2,7 @@ import './App.css';
 import 'normalize.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {PRODUCTS_DATA} from "./data/data";
 import {MenuCardPage} from "./pages/MenuCardPage";
 import {PicturesPage} from "./pages/PicturesPage";
