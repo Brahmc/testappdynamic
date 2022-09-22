@@ -10,8 +10,8 @@ function App() {
     return (
         <Tabs>
             <TabList>
-                <Tab>Title 1</Tab>
-                <Tab>Title 2</Tab>
+                <Tab>Menu</Tab>
+                <Tab>Pics</Tab>
             </TabList>
             <TabPanel>
                 <MenuCardPage products={PRODUCTS_DATA} />
