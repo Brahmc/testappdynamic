@@ -37,11 +37,11 @@ const PICTURES_DATA = [
     },
 ];
 
-export function PicturesPage(props) {
+export function PicturesPage() {
     return (
         <div>
             <h1>Pictures</h1>
-            {PICTURES_DATA.map(p => <Picture pictureData={p}/>)}
+            {PICTURES_DATA.map(p => <Picture key={p.id} pictureData={p}/>)}
         </div>
     );
 }
