@@ -1,12 +1,11 @@
-import {Card} from "react-bootstrap";
-import Col from "react-bootstrap/Col";
 import {Section} from "./Section";
 import * as PropTypes from "prop-types";
+import {MyCard} from "./MyCard";
 
 function Number(props) {
-    return <Col className="g-3" xs={3}>
-        <Card>{props.n}</Card>
-    </Col>;
+    return <MyCard>
+        {props.n}
+    </MyCard>
 }
 
 Number.propTypes = {n: PropTypes.any};
