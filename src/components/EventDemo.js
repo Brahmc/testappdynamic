@@ -1,8 +1,8 @@
 import {Section} from "./Section";
 import {Button} from "react-bootstrap";
 
-export function EventDemo() {
-    return <Section title='events'>
+export function EventDemo(props) {
+    return <Section title='events' open={props.open}>
         <EventButton />
         <BootstrapButton />
         <div className='bg-danger text-start' onClick={() => alert('div is clicked')}>

@@ -11,8 +11,8 @@ function Number(props) {
 Number.propTypes = {n: PropTypes.any};
 
 export function Numbers(props) {
-    const {title, numbers} = props;
-    return <Section title={title}>
+    const {title, numbers, open} = props;
+    return <Section title={title} open={open}>
         {numbers.map((n, i) => <Number key={i} n={n}/>)}
     </Section>;
 }

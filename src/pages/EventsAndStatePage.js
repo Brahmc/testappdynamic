@@ -3,7 +3,7 @@ import {StateDemo} from "../components/StateDemo";
 
 export function EventsAndStatePage() {
     return <>
-        <EventDemo />
+        <EventDemo open={true} />
         <StateDemo />
         </>;
 }

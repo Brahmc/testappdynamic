@@ -2,8 +2,8 @@ import {Section} from "./Section";
 import {MyCard} from "./MyCard";
 
 export function Persons(props) {
-    const {persons, title} = props;
-    return <Section title={title}>
+    const {persons, title, open} = props;
+    return <Section title={title} open={open}>
         {persons.map(p => <Person person={p} key={p.name}/>)}
     </Section>
 }
