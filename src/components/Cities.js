@@ -10,8 +10,7 @@ export function Cities(props) {
 
 function City(props) {
     const {name, numberOfPersons} = props;
-    return <MyCard>
-        <h1>{name}</h1>
+    return <MyCard title={name}>
         <span>{numberOfPersons}</span>
     </MyCard>;
 }

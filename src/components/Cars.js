@@ -14,8 +14,7 @@ const colorMap = new Map(colors);
 
 function Car(props) {
     const {car} = props;
-    return <MyCard>
-        <h1>{car.name}</h1>
+    return <MyCard title={car.name}>
         {car.brand ? <span>merk: {car.brand}</span> : null}
         {car.type ? <span>type: {car.type}</span> : null}
         {car.color ? <span style={{

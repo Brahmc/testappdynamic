@@ -9,6 +9,7 @@ import {PicturesPage} from "./pages/PicturesPage";
 import {NumbersPage} from "./pages/NumbersPage";
 import {CarsPage} from "./pages/CarsPage";
 import {PersonsPage} from "./pages/PersonsPage";
+import {EventsAndStatePage} from "./pages/EventsAndStatePage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Tab>Numbers</Tab>
                 <Tab>Cars</Tab>
                 <Tab>Persons</Tab>
+                <Tab>EventsAndSatePage</Tab>
             </TabList>
             <TabPanel>
                 <MenuCardPage products={PRODUCTS_DATA} />
@@ -34,6 +36,9 @@ function App() {
             </TabPanel>
             <TabPanel>
                 <PersonsPage persons = {PERSON_DATA}/>
+            </TabPanel>
+            <TabPanel>
+                <EventsAndStatePage />
             </TabPanel>
         </Tabs>
     );
