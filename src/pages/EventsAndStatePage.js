@@ -1,5 +1,9 @@
 import {EventDemo} from "../components/EventDemo";
+import {StateDemo} from "../components/StateDemo";
 
-export function EventsAndStatePage(props) {
-    return <EventDemo />;
+export function EventsAndStatePage() {
+    return <>
+        <EventDemo />
+        <StateDemo />
+        </>;
 }
