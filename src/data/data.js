@@ -33,3 +33,19 @@ export const CAR_DATA = [
     {id: 8, name: "auto4", brand: "Citroën", type: "C4", color: "rood"},
     {id: 9, name: "auto5", brand: "Fiat", type: "Panda", color: "rood"}
 ];
+
+export const PERSON_DATA = [
+    {id: 1, name: "Aziz", age: 18, city: "Antwerpen"},
+    {id: 2, name: "Marie", age: 25, city: "Lint"},
+    {id: 3, name: "Mohamed", age: 16, city: "Ekeren"},
+    {id: 4, name: "Yves", age: 24, city: "Berchem"},
+    {id: 5, name: "Sara", age: 16, city: "Mortsel"},
+    {id: 6, name: "Eli", age: 16, city: "Antwerpen"},
+    {id: 7, name: "Bart", age: 18, city: "Antwerpen"},
+    {id: 8, name: "Aisha", age: 28, city: "Mortsel"},
+    {id: 9, name: "Wout", age: 20, city: "Antwerpen"},
+    {id: 10, name: "Alyona", age: 20, city: "Kapellen"},
+    {id: 11, name: "Ruben", age: 19, city: "Boechout"},
+    {id: 12, name: "Anna", age: 21, city: "Kapellen"},
+    {id: 13, name: "Farah", age: 20, city: "Antwerpen"},
+];
