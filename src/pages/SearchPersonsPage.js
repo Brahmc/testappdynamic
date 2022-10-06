@@ -1,16 +1,13 @@
 import {Persons} from "../components/Persons";
-import {Form} from "react-bootstrap";
 import {useState} from "react";
+import {MyInput} from "../components/MyInput";
 
 export function SearchPersonsPage(props) {
     const {persons} = props;
     const [searchValue, setSearchValue] = useState('');
     return (
         <>
-            <Form>
-                <Form.Label>test input:</Form.Label>
-                <Form.Control onChange={(e) => setSearchValue(e.target.value)} />
-            </Form>
+            <MyInput label='test input:' onChange={(e) => setSearchValue(e.target.value)} />
             <Persons title='Search' persons={persons.filter(p => p.name.toLowerCase().match(searchValue.toLowerCase()))} />
         </>);
 }

@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Form} from "react-bootstrap";
+import {MyInput} from "../components/MyInput";
 
 export function InputPage() {
     const [testInput, setTestInput] = useState('');
@@ -12,12 +12,7 @@ export function InputPage() {
                     <input id="search" value={testInput} onChange={(e) => setTestInput(e.target.value)} />
                 </div>
             </div>
-            <div className="m-3">
-                <Form>
-                    <Form.Label>test input:</Form.Label>
-                    <Form.Control value={testInput} onChange={(e) => setTestInput(e.target.value)} />
-                </Form>
-            </div>
+            <MyInput label='test input:' value={testInput} onChange={(e) => setTestInput(e.target.value)}/>
             <div>De waarde is: {testInput}</div>
         </>
     )
