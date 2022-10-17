@@ -29,6 +29,6 @@ Car.propTypes = {car: PropTypes.any};
 export function Cars(props) {
     const {cars, title} = props;
     return <Section title={title} open={true}>
-        {cars.map(car => <Car key={car.id} car={car}/>)}
+        {cars?.map(car => <Car key={car.id} car={car}/>)}
     </Section>;
 }
