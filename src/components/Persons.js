@@ -4,7 +4,7 @@ import {MyCard} from "./MyCard";
 export function Persons(props) {
     const {persons, title, open} = props;
     return <Section title={title} open={open}>
-        {persons.map(p => <Person person={p} key={p.name}/>)}
+        {persons?.map(p => <Person person={p} key={p.id ? p.id : p.name}/>)}
     </Section>
 }
 
