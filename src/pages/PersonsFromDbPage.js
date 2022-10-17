@@ -1,12 +1,13 @@
 import {collection} from 'firebase/firestore';
-import {useCollectionData, useCollectionDataOnce} from 'react-firebase-hooks/firestore';
+import {useCollectionData} from 'react-firebase-hooks/firestore';
 import {firestoreDB} from '../services/firebase';
 import {Persons} from "../components/Persons";
 import {useState} from "react";
 import {MyInput} from "../components/MyInput";
+import {fireStoreIdConverter} from "../services/fireStoreConverter";
 
 export function PersonsFromDbPage() {
-    const query = collection(firestoreDB, 'Persons').withConverter(personConverter);
+    const query = collection(firestoreDB, 'Persons').withConverter(fireStoreIdConverter);
     const [values, loading, error] = useCollectionData(query);
     console.log({values, loading, error});
     const [search, setSearch] = useState('');
@@ -17,12 +18,4 @@ export function PersonsFromDbPage() {
         </>
 
     );
-}
-
-const personConverter = {
-    toFirestore: undefined,
-    fromFirestore: function (snapshot, options) {
-        const data = snapshot.data(options);
-        return {...data, id: snapshot.id}
-    }
 }
