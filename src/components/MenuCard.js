@@ -7,7 +7,7 @@ export function MenuCard(props) {
     return (<div>
                 <h1>Menu</h1>
             <Container>
-                {products.map(p => <MenuProduct product={p} key={p.name} />)}
+                {products?.map(p => <MenuProduct product={p} key={p.name} />)}
             </Container>
             </div>
     );
