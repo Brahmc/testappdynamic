@@ -16,5 +16,5 @@ MenuCard.propTypes = {
     products: PropTypes.arrayOf(PropTypes.shape({
         name: PropTypes.string,
         price: PropTypes.number
-    })).isRequired
+    }))
 }
