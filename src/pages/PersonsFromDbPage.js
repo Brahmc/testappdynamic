@@ -1,4 +1,4 @@
-import {collection, query, orderBy, addDoc, updateDoc} from 'firebase/firestore';
+import {collection, query, orderBy, addDoc, updateDoc, deleteDoc} from 'firebase/firestore';
 import {useCollectionData} from 'react-firebase-hooks/firestore';
 import {firestoreDB} from '../services/firebase';
 import {Persons} from "../components/Persons";
@@ -21,7 +21,7 @@ export function PersonsFromDbPage() {
         } catch (e) {
             console.log("Document could not be added " + e.toString());
         }
-        
+
     }
 
     const incrementAllAges = async (amount) => {
@@ -34,13 +34,26 @@ export function PersonsFromDbPage() {
         }
     }
 
+    const deletePerson = async (person) => {
+        try{
+            await deleteDoc(person.ref);
+            console.log("Document written with id " + person.id + " was deleted");
+        } catch (e) {
+            console.log("Document could not be deleted : " + e.toString());
+        }
+    }
+
     return (
         <>
             <MyInput label='Search:' onChange={(e) => setSearch(e.target.value)} />
             <MyButton onClick={() => addDummyPerson()}>+Dummy</MyButton>
             <MyButton onClick={() => incrementAllAges(1)}>Age+1</MyButton>
             <MyButton onClick={() => incrementAllAges(-1)}>Age-1</MyButton>
-            <Persons title='persons from db' persons={values?.filter(p => p.name.toLowerCase().match(search.toLowerCase()))} open={true} />
+            <Persons title='persons from db'
+                     persons={
+                         values?.filter(p => p.name.toLowerCase().match(search.toLowerCase()))
+                         .map(p => ({...p, buttonName: 'delete', buttonOnClick: () => deletePerson(p)}))}
+                     open={true} />
         </>
 
     );

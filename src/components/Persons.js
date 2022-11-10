@@ -1,5 +1,6 @@
 import {Section} from "./Section";
 import {MyCard} from "./MyCard";
+import {Button} from "react-bootstrap";
 
 export function Persons(props) {
     const {persons, title, open} = props;
@@ -13,5 +14,6 @@ function Person(props) {
     return <MyCard title={person.name}>
         <span>{person.age}</span>
         <span>{person.city}</span>
+        {person.buttonName ? <Button onClick={person.buttonOnClick}>{person.buttonName}</Button> : ''}
     </MyCard>
 }
