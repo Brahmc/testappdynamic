@@ -13,13 +13,16 @@ export function PersonsFromDbPage() {
     const [values, loading, error] = useCollectionData(queryRef);
     console.log({loading, error})
     const [search, setSearch] = useState('');
-    const addDummyPerson = () => {
+    const addDummyPerson = async () => {
         const newPerson = { name: "Dummy", age: 8000, city: "Antwerpen", _validation: { age: (e) => e < 0 ? 0 : e > 100 ? 100 : Number(e)} };
-        addDoc(collectionRef, newPerson);
+        const docRef = await addDoc(collectionRef, newPerson);
+        console.log("Document written with ID: " + docRef.id + " was added.");
     }
 
-    const incrementAllAges = (amount) => {
-        values.forEach(p => {p.age += amount; updateDoc(p.ref, p)});
+    const incrementAllAges = async (amount) => {
+        const results = values.map(async p => await updateDoc(p.ref, {age: p.age + amount}));
+        await Promise.all(results);
+        console.log("alle leeftijden werden met " + amount + " verhoogd");
     }
 
     return (
