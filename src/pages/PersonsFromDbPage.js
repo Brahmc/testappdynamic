@@ -15,14 +15,23 @@ export function PersonsFromDbPage() {
     const [search, setSearch] = useState('');
     const addDummyPerson = async () => {
         const newPerson = { name: "Dummy", age: 8000, city: "Antwerpen", _validation: { age: (e) => e < 0 ? 0 : e > 100 ? 100 : Number(e)} };
-        const docRef = await addDoc(collectionRef, newPerson);
-        console.log("Document written with ID: " + docRef.id + " was added.");
+        try {
+            const docRef = await addDoc(collectionRef, newPerson);
+            console.log("Document written with ID: " + docRef.id + " was added.");
+        } catch (e) {
+            console.log("Document could not be added " + e.toString());
+        }
+        
     }
 
     const incrementAllAges = async (amount) => {
-        const results = values.map(async p => await updateDoc(p.ref, {age: p.age + amount}));
-        await Promise.all(results);
-        console.log("alle leeftijden werden met " + amount + " verhoogd");
+        try {
+            const results = values.map(async p => await updateDoc(p.ref, {age: p.age + amount}));
+            await Promise.all(results);
+            console.log("alle leeftijden werden met " + amount + " verhoogd");
+        } catch (e) {
+            console.log("Something went wrong incrementing all ages : " + e.toString());
+        }
     }
 
     return (
