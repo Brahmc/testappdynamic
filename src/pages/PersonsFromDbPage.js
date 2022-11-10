@@ -7,7 +7,7 @@ import {MyInput} from "../components/MyInput";
 import {fireStoreIdConverter} from "../services/fireStoreConverter";
 import {MyButton} from "../components/MyButton";
 import {PersonFormEdit} from "../components/PersonFormEdit";
-import {MdDelete, MdEdit} from "react-icons/md";
+import {MdDelete, MdEdit, MdEditOff} from "react-icons/md";
 
 export function PersonsFromDbPage() {
     const collectionRef = collection(firestoreDB, 'Persons').withConverter(fireStoreIdConverter);
@@ -16,6 +16,7 @@ export function PersonsFromDbPage() {
     console.log({loading, error})
     const [search, setSearch] = useState('');
     const [personSelected, setPersonSelected] = useState(undefined);
+    const [editMode, setEditMode] = useState(false);
 
     const addDummyPerson = async () => {
         const newPerson = { name: "Dummy", age: 8000, city: "Antwerpen", _validation: { age: (e) => e < 0 ? 0 : e > 100 ? 100 : Number(e)} };
@@ -63,12 +64,13 @@ export function PersonsFromDbPage() {
             <MyButton onClick={() => addDummyPerson()}>+Dummy</MyButton>
             <MyButton onClick={() => incrementAllAges(1)}>Age+1</MyButton>
             <MyButton onClick={() => incrementAllAges(-1)}>Age-1</MyButton>
+            <MyButton onClick={() => setEditMode(!editMode)}>{editMode ? <MdEdit /> : <MdEditOff />}</MyButton>
             <Persons title='persons from db'
                      persons={
                          values?.filter(p => p.name.toLowerCase().match(search.toLowerCase()))
-                         .map(p => ({...p, buttons: [
+                         .map(p => ({...p, buttons: (editMode ? [
                                  {name: <MdDelete />, onClick: () => deletePerson(p)},
-                                 {name: <MdEdit/>, onClick: () => setPersonSelected(p)}]
+                                 {name: <MdEdit/>, onClick: () => setPersonSelected(p)}] : undefined)
                             })
                          )}
                      open={true} />
