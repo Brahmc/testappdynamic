@@ -6,6 +6,8 @@ import {useState} from "react";
 import {MyInput} from "../components/MyInput";
 import {fireStoreIdConverter} from "../services/fireStoreConverter";
 import {MyButton} from "../components/MyButton";
+import {PersonFormEdit} from "../components/PersonFormEdit";
+import {MdDelete, MdEdit} from "react-icons/md";
 
 export function PersonsFromDbPage() {
     const collectionRef = collection(firestoreDB, 'Persons').withConverter(fireStoreIdConverter);
@@ -13,6 +15,8 @@ export function PersonsFromDbPage() {
     const [values, loading, error] = useCollectionData(queryRef);
     console.log({loading, error})
     const [search, setSearch] = useState('');
+    const [personSelected, setPersonSelected] = useState(undefined);
+
     const addDummyPerson = async () => {
         const newPerson = { name: "Dummy", age: 8000, city: "Antwerpen", _validation: { age: (e) => e < 0 ? 0 : e > 100 ? 100 : Number(e)} };
         try {
@@ -43,8 +47,18 @@ export function PersonsFromDbPage() {
         }
     }
 
+    const savePerson = async (person) => {
+        try {
+           await updateDoc(person.ref, person);
+            console.log("Person met id " + person.id + " was edited");
+        } catch (e) {
+            console.log("Something went wrong editing person with id " + person.id + " " + e.toString());
+        }
+    }
+
     return (
         <>
+            <PersonFormEdit person={personSelected} setPersonSelected={setPersonSelected} savePerson={savePerson} />
             <MyInput label='Search:' onChange={(e) => setSearch(e.target.value)} />
             <MyButton onClick={() => addDummyPerson()}>+Dummy</MyButton>
             <MyButton onClick={() => incrementAllAges(1)}>Age+1</MyButton>
@@ -52,7 +66,11 @@ export function PersonsFromDbPage() {
             <Persons title='persons from db'
                      persons={
                          values?.filter(p => p.name.toLowerCase().match(search.toLowerCase()))
-                         .map(p => ({...p, buttonName: 'delete', buttonOnClick: () => deletePerson(p)}))}
+                         .map(p => ({...p, buttons: [
+                                 {name: <MdDelete />, onClick: () => deletePerson(p)},
+                                 {name: <MdEdit/>, onClick: () => setPersonSelected(p)}]
+                            })
+                         )}
                      open={true} />
         </>
 

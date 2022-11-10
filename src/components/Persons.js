@@ -14,6 +14,6 @@ function Person(props) {
     return <MyCard title={person.name}>
         <span>{person.age}</span>
         <span>{person.city}</span>
-        {person.buttonName ? <Button onClick={person.buttonOnClick}>{person.buttonName}</Button> : ''}
+        {person.buttons.map(b => <Button key={b.name} onClick={b.onClick}>{b.name}</Button>)}
     </MyCard>
 }
