@@ -1,10 +1,11 @@
-import {collection, query, orderBy} from 'firebase/firestore';
+import {collection, query, orderBy, addDoc, updateDoc} from 'firebase/firestore';
 import {useCollectionData} from 'react-firebase-hooks/firestore';
 import {firestoreDB} from '../services/firebase';
 import {Persons} from "../components/Persons";
 import {useState} from "react";
 import {MyInput} from "../components/MyInput";
 import {fireStoreIdConverter} from "../services/fireStoreConverter";
+import {MyButton} from "../components/MyButton";
 
 export function PersonsFromDbPage() {
     const collectionRef = collection(firestoreDB, 'Persons').withConverter(fireStoreIdConverter);
@@ -12,10 +13,22 @@ export function PersonsFromDbPage() {
     const [values, loading, error] = useCollectionData(queryRef);
     console.log({loading, error})
     const [search, setSearch] = useState('');
+    const addDummyPerson = () => {
+        const newPerson = { name: "Dummy", age: 8000, city: "Antwerpen", _validation: { age: (e) => e < 0 ? 0 : e > 100 ? 100 : Number(e)} };
+        addDoc(collectionRef, newPerson);
+    }
+
+    const incrementAllAges = (amount) => {
+        values.forEach(p => {p.age += amount; updateDoc(p.ref, p)});
+    }
+
     return (
         <>
-            <Persons title='persons from db' persons={values?.filter(p => p.name.toLowerCase().match(search.toLowerCase()))} open={true} />
             <MyInput label='Search:' onChange={(e) => setSearch(e.target.value)} />
+            <MyButton onClick={() => addDummyPerson()}>+Dummy</MyButton>
+            <MyButton onClick={() => incrementAllAges(1)}>Age+1</MyButton>
+            <MyButton onClick={() => incrementAllAges(-1)}>Age-1</MyButton>
+            <Persons title='persons from db' persons={values?.filter(p => p.name.toLowerCase().match(search.toLowerCase()))} open={true} />
         </>
 
     );
