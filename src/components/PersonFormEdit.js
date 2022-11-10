@@ -1,6 +1,7 @@
 import Modal from "react-bootstrap/Modal";
 import {MyInput} from "./MyInput";
 import Button from "react-bootstrap/Button";
+import {PersonAvatar} from "./Persons";
 
 export function PersonFormEdit(props) {
     const {person, setPersonSelected, savePerson} = props;
@@ -14,6 +15,7 @@ export function PersonFormEdit(props) {
     return (
         <Modal show={person} onHide={handleClose}>
             <Modal.Header closeButton>
+                <PersonAvatar person={person} />
                 <Modal.Title>Edit person {person?.name}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
